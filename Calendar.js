@@ -45,4 +45,4 @@ async function createCalendar() {
   console.log(`Your new calendar ID is: ${newCalendarID}`);
 }
 
-const styles = StyleSheet.create({ ... }); 
+const styles = StyleSheet.create({ ... });
