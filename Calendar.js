@@ -15,7 +15,8 @@ export default function App() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View //style={styles.container} 
+    >
       <Text>Calendar Module Example</Text>
       <Button title="Create a new calendar" onPress={createCalendar} />
     </View>
@@ -45,4 +46,4 @@ async function createCalendar() {
   console.log(`Your new calendar ID is: ${newCalendarID}`);
 }
 
-const styles = StyleSheet.create({ ... });
+//const styles = StyleSheet.create({ ... });
