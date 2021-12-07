@@ -11,14 +11,16 @@ export default function App() {
     (async () => {
       const { status } = await Calendar.requestCalendarPermissionsAsync();
       if (status === 'granted') {
+        
         const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
         const calendarIds = calendars.map(c => c.id);
         const startDate = new Date();
         const endDate = new Date(startDate.valueOf() + 1000 * 60 * 60 * 24);
-        const events = await Calendar.getEventsAsync(calendarIds, startDate, endDate);
-        console.log(events);
+        const todaysEvents = await Calendar.getEventsAsync(calendarIds, startDate, endDate);
+        console.log(todaysEvents);
         //console.log('Here are all your calendars:');
         //console.log({ calendars });
+      
       }
       else {
         setCalendarError("Could not load Calendar");
@@ -29,7 +31,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Calend Events</Text>
-      <Button title="Show today's events" onPress={setEvents(events)} />
+      <Button title="Show today's events" onPress={setEvents(todaysEvents)} />
 
       {calendarError ?
         <Text style={{ color: 'red', fontWeight: 'bold' }}>{calendarError}</Text> :
