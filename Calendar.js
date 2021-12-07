@@ -15,7 +15,7 @@ export default function ShowCalendar() {
   }, []);
 
   return (
-    <View //style={styles.container} 
+    <View style={styles.container}
     >
       <Text>Here is today's schedule</Text>
       <Button title="Create a new calendar" onPress={createCalendar} />
@@ -46,4 +46,8 @@ async function createCalendar() {
   console.log(`Your new calendar ID is: ${newCalendarID}`);
 }
 
-//const styles = StyleSheet.create({ ... });
+const styles = StyleSheet.create({
+  container: {
+
+  }
+});
