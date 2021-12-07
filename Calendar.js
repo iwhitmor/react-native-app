@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View, Text, Button, Platform } from 'react-native';
 import * as Calendar from 'expo-calendar';
 
-export default function App() {
+export default function ShowCalendar() {
   useEffect(() => {
     (async () => {
       const { status } = await Calendar.requestCalendarPermissionsAsync();
@@ -17,7 +17,7 @@ export default function App() {
   return (
     <View //style={styles.container} 
     >
-      <Text>Here is today's schedule:</Text>
+      <Text>Here is today's schedule</Text>
       <Button title="Create a new calendar" onPress={createCalendar} />
     </View>
   );
