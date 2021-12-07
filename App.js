@@ -21,6 +21,8 @@ export default function App() {
         const todaysEvents = await Calendar.getEventsAsync(calendarIds, startDate, endDate);
 
         console.log(todaysEvents);
+
+        setTodaysEvents(todaysEvents);
         //console.log('Here are all your calendars:');
         //console.log({ calendars });
       }
@@ -33,12 +35,12 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Calendar Events</Text>
-      <Button title="Show today's events" onPress={() => setTodaysEvents(todaysEvents)} />
+      <Button title="Show today's events" onPress={() => setTodaysEvents} />
 
       {calendarError ?
         <Text style={{ color: 'red', fontWeight: 'bold' }}>{calendarError}</Text> :
         <>
-          <Text>{todaysEvents}</Text>
+          <Text>{todaysEvents.map(e => e.title)}</Text>
         </>
       }
     </View>
