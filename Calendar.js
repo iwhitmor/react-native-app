@@ -17,7 +17,7 @@ export default function App() {
   return (
     <View //style={styles.container} 
     >
-      <Text>Calendar Module Example</Text>
+      <Text>Here is today's schedule:</Text>
       <Button title="Create a new calendar" onPress={createCalendar} />
     </View>
   );
