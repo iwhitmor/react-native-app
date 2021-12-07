@@ -7,35 +7,35 @@ export default function App() {
   const [todaysEvents, setTodaysEvents] = useState([]);
   const [calendarError, setCalendarError] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await Calendar.requestCalendarPermissionsAsync();
-      if (status === 'granted') {
 
-        const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+  async function getEvents() {
+    const { status } = await Calendar.requestCalendarPermissionsAsync();
+    if (status === 'granted') {
 
-        const calendarIds = calendars.map(c => c.id);
-        const startDate = new Date();
-        const endDate = new Date(startDate.valueOf() + 1000 * 60 * 60 * 24);
+      const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
 
-        const todaysEvents = await Calendar.getEventsAsync(calendarIds, startDate, endDate);
+      const calendarIds = calendars.map(c => c.id);
+      const startDate = new Date();
+      const endDate = new Date(startDate.valueOf() + 1000 * 60 * 60 * 24);
 
-        console.log(todaysEvents);
+      const todaysEvents = await Calendar.getEventsAsync(calendarIds, startDate, endDate);
 
-        setTodaysEvents(todaysEvents);
-        //console.log('Here are all your calendars:');
-        //console.log({ calendars });
-      }
-      else {
-        setCalendarError("Could not load Calendar");
-      }
-    })();
-  }, []);
+      console.log(todaysEvents);
+
+      setTodaysEvents(todaysEvents);
+      //console.log('Here are all your calendars:');
+      //console.log({ calendars });
+    }
+    else {
+      setCalendarError("Could not load Calendar");
+    }
+  }
+
 
   return (
     <View style={styles.container}>
       <Text>Calendar Events</Text>
-      <Button title="Show today's events" onPress={() => setTodaysEvents} />
+      <Button title="Show today's events" onPress={getEvents} />
 
       {calendarError ?
         <Text style={{ color: 'red', fontWeight: 'bold' }}>{calendarError}</Text> :
