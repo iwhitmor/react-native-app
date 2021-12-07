@@ -1,24 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Button, Platform } from 'react-native';
 import * as Calendar from 'expo-calendar';
 
 export default function App() {
+
+  const [events, setEvents] = useState([]);
+  const [calendarError, setCalendarError] = useState(null);
+
   useEffect(() => {
     (async () => {
       const { status } = await Calendar.requestCalendarPermissionsAsync();
       if (status === 'granted') {
         const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
-        console.log('Here are all your calendars:');
-        console.log({ calendars });
+        const calendarIds = calendars.map(c => c.id);
+        const startDate = new Date();
+        const endDate = new Date(startDate.valueOf() + 1000 * 60 * 60 * 24);
+        const events = await Calendar.getEventsAsync(calendarIds, startDate, endDate);
+        console.log(events);
+        //console.log('Here are all your calendars:');
+        //console.log({ calendars });
+      }
+      else {
+        setCalendarError("Could not load Calendar");
       }
     })();
   }, []);
 
-
   return (
     <View style={styles.container}>
       <Text>Calendar Module Example</Text>
-      <Button title="Create a new calendar" onPress={createCalendar} />
+      <Button title="Show today's events" onPress={setEvents} />
     </View>
   );
 }
@@ -44,6 +55,13 @@ async function createCalendar() {
     accessLevel: Calendar.CalendarAccessLevel.OWNER,
   });
   console.log(`Your new calendar ID is: ${newCalendarID}`);
+}
+
+async function calendarEvents() {
+  const defaultCalendarSource =
+    Platform.OS === 'ios'
+      ? await getDefaultCalendarSource()
+      : { isLocalAccount: true, name: '' }
 }
 
 const styles = StyleSheet.create({
