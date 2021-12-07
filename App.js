@@ -28,8 +28,15 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Calendar Module Example</Text>
-      <Button title="Show today's events" onPress={setEvents} />
+      <Text>Calend Events</Text>
+      <Button title="Show today's events" onPress={setEvents(events)} />
+
+      {calendarError ?
+        <Text style={{ color: 'red', fontWeight: 'bold' }}>{calendarError}</Text> :
+        <>
+          <Text>Events: {events}</Text>
+        </>
+      }
     </View>
   );
 }
