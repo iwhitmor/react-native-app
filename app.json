@@ -17,7 +17,10 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSReminderUsageDescription": "UsingCalendar"
+      }
     },
     "android": {
       "adaptiveIcon": {
