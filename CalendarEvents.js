@@ -33,7 +33,7 @@ export default function CalendarEvents() {
 
   return (
     <View style={styles.container}>
-      <Button title="Show today's events" onPress={getEvents} />
+      <Button style={styles.button} title='Show todays events' onPress={getEvents} />
       {calendarError ?
         <Text style={{ fontWeight: 'bold' }}>{calendarError}</Text> :
         <>
@@ -77,7 +77,6 @@ async function calendarEvents() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
