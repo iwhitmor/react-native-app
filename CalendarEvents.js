@@ -33,11 +33,9 @@ export default function CalendarEvents() {
 
   return (
     <View style={styles.container}>
-      <Text>Calendar Events</Text>
       <Button title="Show today's events" onPress={getEvents} />
-
       {calendarError ?
-        <Text style={{ color: 'red', fontWeight: 'bold' }}>{calendarError}</Text> :
+        <Text style={{ fontWeight: 'bold' }}>{calendarError}</Text> :
         <>
           <Text>{todaysEvents.map(e => e.title)}</Text>
         </>
