@@ -7,7 +7,7 @@ function Header() {
   return (
     <View style={styles.container}>
       <Text style={styles.Header}>
-        Forget Me Not: Event Reminder
+        AllDay Events Planner
       </Text>
     </View>
   );
