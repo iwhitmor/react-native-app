@@ -37,7 +37,7 @@ export default function CalendarEvents() {
       {calendarError ?
         <Text style={{ fontWeight: 'bold' }}>{calendarError}</Text> :
         <>
-          <Text>{todaysEvents.map(e => e.title)}</Text>
+          {todaysEvents.map(e => <Text key={e.id}>- {e.title} -</Text>)}
         </>
       }
     </View>
