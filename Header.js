@@ -7,7 +7,7 @@ function Header() {
   return (
     <View style={styles.container}>
       <Text style={styles.Header}>
-        AllDay Events Planner
+        All Day Events Planner
       </Text>
     </View>
   );
