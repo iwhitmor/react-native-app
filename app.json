@@ -25,7 +25,11 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#FFFFFF",
+      },
+      "permissions": {
+        "READ_CALENDAR": true,
+        "WRITE_CALENDAR": true
       }
     },
     "web": {}
